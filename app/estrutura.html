@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrutura - CI/CD Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="sub-hero">
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-icon">⌂</span>
+    <span>CI/CD Project</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="workflow.html">Workflow</a></li>
+    <li><a href="docker.html">Docker</a></li>
+    <li><a href="estrutura.html">Estrutura</a></li>
+  </ul>
+
+  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+    <span id="themeIcon">☀</span>
+  </button>
+</nav>
+
+    <div class="sub-hero-content">
+      <h1>Estrutura do Projeto</h1>
+      <p>
+        Organização do repositório e função de cada pasta e ficheiro principal.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>Árvore do Repositório</h2>
+      <div class="code-block">
+<pre><code>.github/
+└── workflows/
+    └── ci-cd.yml
+
+app/
+├── index.html
+├── workflow.html
+├── docker.html
+├── estrutura.html
+├── style.css
+├── script.js
+└── images/
+    ├── docker-logo.png
+    ├── github-actions-logo.png
+    ├── ghcr-logo.png
+    ├── pipeline-diagram.png
+    ├── ci-icon.png
+    ├── cd-icon.png
+    └── automation-icon.png
+
+Dockerfile
+README.md</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Explicação da Estrutura</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">⚙️</div>
+          <h3>.github/workflows</h3>
+          <p>
+            Contém o ficheiro YAML do GitHub Actions que define a pipeline CI/CD.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🖥️</div>
+          <h3>app/</h3>
+          <p>
+            Contém todos os ficheiros da aplicação web: páginas HTML, CSS, JavaScript e imagens.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🐳</div>
+          <h3>Dockerfile</h3>
+          <p>
+            Define como a imagem Docker é construída para servir a aplicação com Nginx.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">📘</div>
+          <h3>README.md</h3>
+          <p>
+            Documenta o projeto, a pipeline, a convenção de commits e a execução local.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Como os Componentes se Ligam</h2>
+      <div class="stack-grid">
+        <div class="info-box">
+          <h3>Aplicação</h3>
+          <p>
+            O conteúdo da pasta <strong>app/</strong> representa a interface do projeto
+            e é o que será servido ao utilizador final.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Docker</h3>
+          <p>
+            O Dockerfile copia o conteúdo da pasta <strong>app/</strong> para dentro
+            do container baseado em Nginx.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>GitHub Actions</h3>
+          <p>
+            O workflow automatiza a validação dos commits e executa o build da imagem Docker.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>GHCR</h3>
+          <p>
+            A imagem Docker construída pela pipeline é publicada no GitHub Container Registry.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlight">
+      <h2>Vantagem desta organização</h2>
+      <p>
+        Esta estrutura torna o projeto claro, modular e fácil de apresentar.
+        A aplicação fica separada da automação e da documentação, o que melhora
+        manutenção, leitura e escalabilidade.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explicação da estrutura do repositório e da ligação entre componentes.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

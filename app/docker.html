@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker - CI/CD Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="sub-hero">
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-icon">⌂</span>
+    <span>CI/CD Project</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="workflow.html">Workflow</a></li>
+    <li><a href="docker.html">Docker</a></li>
+    <li><a href="estrutura.html">Estrutura</a></li>
+  </ul>
+
+  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+    <span id="themeIcon">☀</span>
+  </button>
+</nav>
+
+    <div class="sub-hero-content">
+      <h1>Docker e Containerização</h1>
+      <p>
+        Explicação do papel do Docker, do Dockerfile e da utilização do Nginx neste projeto.
+      </p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>O que é Docker</h2>
+      <p>
+        Docker é uma plataforma que permite criar, empacotar e executar aplicações
+        dentro de containers. Um container inclui a aplicação e os recursos necessários
+        para a sua execução, garantindo que tudo corre da mesma forma em ambientes diferentes.
+      </p>
+      <p>
+        Neste projeto, Docker é usado para empacotar a aplicação web estática e permitir
+        que ela seja distribuída de forma simples, consistente e reprodutível.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Conceitos Fundamentais</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">📦</div>
+          <h3>Imagem</h3>
+          <p>
+            É o artefacto criado a partir do Dockerfile. Serve como modelo para
+            executar containers.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">📁</div>
+          <h3>Container</h3>
+          <p>
+            É a instância em execução de uma imagem Docker.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">📝</div>
+          <h3>Dockerfile</h3>
+          <p>
+            Ficheiro que descreve passo a passo como construir a imagem Docker.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🌐</div>
+          <h3>Nginx</h3>
+          <p>
+            Servidor web usado para disponibilizar os ficheiros estáticos da aplicação.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Dockerfile Utilizado</h2>
+      <div class="code-block">
+<pre><code>FROM nginx:alpine
+
+COPY app/ /usr/share/nginx/html/</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Explicação Linha por Linha</h2>
+      <div class="stack-grid">
+        <div class="info-box">
+          <h3>FROM nginx:alpine</h3>
+          <p>
+            Define a imagem base do projeto. Neste caso, é utilizada a imagem oficial
+            do Nginx numa versão leve baseada em Alpine Linux.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>COPY app/ /usr/share/nginx/html/</h3>
+          <p>
+            Copia o conteúdo da pasta <strong>app/</strong> para a diretoria padrão
+            do Nginx, onde os ficheiros web ficam disponíveis para serem servidos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Porque esta abordagem foi usada?</h2>
+      <p>
+        Como a aplicação é estática, não existe necessidade de um servidor complexo
+        ou de um backend dedicado. O Nginx é uma escolha leve, conhecida e apropriada
+        para servir ficheiros HTML, CSS, JavaScript e imagens.
+      </p>
+      <p>
+        A imagem <strong>nginx:alpine</strong> também é adequada porque é pequena e rápida,
+        o que torna o build mais eficiente e facilita a publicação no registry.
+      </p>
+    </section>
+
+    <section class="section highlight">
+      <h2>Execução Local</h2>
+      <div class="code-block">
+<pre><code>docker build -t hello-world .
+
+docker run -p 8080:80 hello-world</code></pre>
+      </div>
+      <p>
+        O primeiro comando constrói a imagem Docker. O segundo arranca um container
+        a partir dessa imagem e expõe a aplicação localmente na porta 8080.
+      </p>
+      <p>
+        Depois disso, a aplicação pode ser acedida no browser através de
+        <strong>http://localhost:8080</strong>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Explicação do Docker e da containerização do projeto.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

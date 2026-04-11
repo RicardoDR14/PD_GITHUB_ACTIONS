@@ -3,120 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projeto CI/CD com Docker e GitHub Actions</title>
+  <title>CI/CD Project</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="hero">
-    <nav class="navbar">
-      <div class="logo">CI/CD Project</div>
+<nav class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-icon">⌂</span>
+    <span>CI/CD Project</span>
+  </a>
 
-      <ul class="nav-links">
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#conceitos">Conceitos</a></li>
-        <li><a href="#fluxo">Fluxo</a></li>
-        <li><a href="#tecnologias">Tecnologias</a></li>
-      </ul>
+  <ul class="nav-links">
+    <li><a href="workflow.html">Workflow</a></li>
+    <li><a href="docker.html">Docker</a></li>
+    <li><a href="estrutura.html">Estrutura</a></li>
+  </ul>
 
-      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
-        <span id="themeIcon">☀</span>
-      </button>
-    </nav>
+  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+    <span id="themeIcon">☀</span>
+  </button>
+</nav>
 
     <div class="hero-content">
       <p class="hero-badge">Projeto Académico • Docker • GitHub Actions • CI/CD</p>
-      <h1>Automação de Build e Publicação com Docker e GitHub Actions</h1>
+      <h1>Pipeline CI/CD com Docker e GitHub Actions</h1>
       <p>
-        Este projeto demonstra como uma aplicação web simples pode ser integrada
-        numa pipeline automatizada, desde o commit até à criação e publicação
-        de uma imagem Docker.
+        Este projeto demonstra a automatização do processo de validação,
+        construção e publicação de uma aplicação web estática usando Docker,
+        GitHub Actions e GitHub Container Registry.
       </p>
-      <a href="#sobre" class="btn-primary">Começar</a>
+      <div class="hero-actions">
+        <a href="workflow.html" class="btn-primary">Ver Workflow</a>
+        <a href="docker.html" class="btn-secondary">Ver Docker</a>
+      </div>
     </div>
   </header>
 
   <main>
-    <section id="sobre" class="section">
+    <section class="section">
       <div class="section-header">
         <div>
           <h2>Sobre o Projeto</h2>
           <p>
-            Este projeto foi desenvolvido para demonstrar os conceitos fundamentais
-            de Docker, GitHub Actions, CI/CD, workflows e automação no desenvolvimento
-            de software.
+            O objetivo deste trabalho é demonstrar a criação de uma pipeline CI/CD
+            para uma aplicação web simples. A aplicação base é um “Hello World”
+            estático, mas o foco principal está na automação do processo através
+            do GitHub Actions e na utilização do Docker para empacotamento.
+          </p>
+          <p>
+            Sempre que é feito um push para o repositório, a pipeline verifica se
+            a mensagem de commit segue a convenção definida, constrói uma imagem
+            Docker e publica automaticamente essa imagem no GitHub Container Registry.
           </p>
         </div>
+
         <div class="section-image-box">
-          <img src="assets/images/pipeline-diagram.png" alt="Diagrama da pipeline CI/CD" class="section-image large-image" />
+          <img src="images/pipeline-diagram.png" alt="Pipeline CI/CD" class="section-image large-image" />
         </div>
       </div>
     </section>
 
-    <section id="tecnologias" class="section">
-      <h2>Tecnologias Principais</h2>
-
-      <div class="tech-showcase">
-        <article class="tech-feature">
-          <img src="assets/images/docker-logo.png" alt="Logótipo Docker" class="tech-logo" />
-          <h3>Docker</h3>
-          <p>
-            Plataforma usada para empacotar a aplicação em containers, garantindo
-            consistência e portabilidade entre ambientes.
-          </p>
-        </article>
-
-        <article class="tech-feature">
-          <img src="assets/images/github-actions-logo.png" alt="Logótipo GitHub Actions" class="tech-logo" />
-          <h3>GitHub Actions</h3>
-          <p>
-            Ferramenta de automação que executa workflows no GitHub com base em
-            eventos como push e pull request.
-          </p>
-        </article>
-
-        <article class="tech-feature">
-          <img src="assets/images/ghcr-logo.png" alt="Logótipo GitHub Container Registry" class="tech-logo" />
-          <h3>GHCR</h3>
-          <p>
-            Registry usado para armazenar e distribuir as imagens Docker geradas
-            pela pipeline.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section id="conceitos" class="section">
+    <section class="section">
       <h2>Conceitos Fundamentais</h2>
-
       <div class="card-grid">
         <article class="card">
           <div class="card-icon">
-            <img src="assets/images/automation-icon.png" alt="Ícone de automação" />
+            <img src="images/automation-icon.png" alt="Automação" />
           </div>
           <h3>Automação</h3>
           <p>
-            Automatiza tarefas repetitivas como validação, build e publicação,
-            reduzindo erros humanos.
+            Permite reduzir tarefas manuais e garantir um processo consistente
+            desde o commit até à publicação da imagem.
           </p>
         </article>
 
         <article class="card">
           <div class="card-icon">
-            <img src="assets/images/ci-icon.png" alt="Ícone de integração contínua" />
+            <img src="images/ci-icon.png" alt="CI" />
           </div>
           <h3>Continuous Integration</h3>
           <p>
-            Garante que cada alteração enviada ao repositório é validada automaticamente.
+            Valida automaticamente alterações no código sempre que estas são
+            enviadas para o repositório.
           </p>
         </article>
 
         <article class="card">
           <div class="card-icon">
-            <img src="assets/images/cd-icon.png" alt="Ícone de entrega contínua" />
+            <img src="images/cd-icon.png" alt="CD" />
           </div>
           <h3>Continuous Delivery</h3>
           <p>
-            Prepara automaticamente a aplicação para distribuição ou publicação.
+            Prepara e publica automaticamente o artefacto final, neste caso
+            uma imagem Docker.
           </p>
         </article>
 
@@ -124,116 +104,98 @@
           <div class="card-icon emoji-icon">📦</div>
           <h3>Container</h3>
           <p>
-            Unidade isolada que contém a aplicação e tudo o que ela precisa para correr.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon emoji-icon">🧩</div>
-          <h3>Workflow</h3>
-          <p>
-            Ficheiro que define a automação, quando começa e que tarefas executa.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon emoji-icon">⚙️</div>
-          <h3>Job</h3>
-          <p>
-            Conjunto de steps executado num runner dentro de um workflow.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon emoji-icon">✅</div>
-          <h3>Step</h3>
-          <p>
-            Ação individual dentro de um job, como checkout, validação ou build.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon emoji-icon">🖥️</div>
-          <h3>Runner</h3>
-          <p>
-            Máquina virtual onde os jobs do GitHub Actions são executados.
+            Um container é um ambiente isolado onde a aplicação corre com tudo
+            o que precisa para funcionar.
           </p>
         </article>
       </div>
     </section>
 
-    <section id="fluxo" class="section highlight">
-      <h2>Fluxo Visual da Pipeline</h2>
-      <p class="section-intro">
-        O processo automatizado segue uma sequência lógica desde a alteração no código
-        até à publicação da imagem no registry.
-      </p>
-
+    <section class="section highlight">
+      <h2>Fluxo Geral</h2>
       <div class="flow">
         <div class="flow-step">
           <span class="flow-number">1</span>
-          <h3>Commit</h3>
+          <h3>Push</h3>
           <p>O utilizador envia alterações para o repositório.</p>
         </div>
 
         <div class="flow-step">
           <span class="flow-number">2</span>
-          <h3>Trigger</h3>
-          <p>O evento push ativa a pipeline automaticamente.</p>
+          <h3>Validação</h3>
+          <p>A pipeline valida a mensagem do commit.</p>
         </div>
 
         <div class="flow-step">
           <span class="flow-number">3</span>
-          <h3>Validação</h3>
-          <p>A mensagem do commit é verificada segundo a regra definida.</p>
+          <h3>Build</h3>
+          <p>A imagem Docker é construída a partir do projeto.</p>
         </div>
 
         <div class="flow-step">
           <span class="flow-number">4</span>
-          <h3>Build</h3>
-          <p>A imagem Docker é construída a partir do Dockerfile.</p>
-        </div>
-
-        <div class="flow-step">
-          <span class="flow-number">5</span>
-          <h3>Push</h3>
+          <h3>Publicação</h3>
           <p>A imagem é publicada no GitHub Container Registry.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <h2>Porque esta abordagem é importante?</h2>
+      <h2>Tecnologias Utilizadas</h2>
+      <div class="tech-showcase">
+        <article class="tech-feature">
+          <img src="images/docker-logo.png" alt="Docker" class="tech-logo" />
+          <h3>Docker</h3>
+          <p>
+            Utilizado para empacotar a aplicação e garantir portabilidade entre ambientes.
+          </p>
+        </article>
+
+        <article class="tech-feature">
+          <img src="images/github-actions-logo.png" alt="GitHub Actions" class="tech-logo" />
+          <h3>GitHub Actions</h3>
+          <p>
+            Responsável pela automação da pipeline CI/CD com base em eventos do repositório.
+          </p>
+        </article>
+
+        <article class="tech-feature">
+          <img src="images/ghcr-logo.png" alt="GHCR" class="tech-logo" />
+          <h3>GHCR</h3>
+          <p>
+            Serviço utilizado para armazenar e distribuir a imagem Docker gerada pela pipeline.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Navegação do Conteúdo</h2>
       <div class="card-grid">
         <article class="card">
-          <div class="card-icon emoji-icon">🔁</div>
-          <h3>Reprodutibilidade</h3>
+          <div class="card-icon emoji-icon">⚙️</div>
+          <h3><a class="card-link" href="workflow.html">Workflow</a></h3>
           <p>
-            O Docker ajuda a garantir que a aplicação corre da mesma forma em qualquer ambiente.
+            Explica o ficheiro YAML, os jobs, os steps, o trigger, o uso de
+            <strong>needs</strong>, permissões e publicação no GHCR.
           </p>
         </article>
 
         <article class="card">
-          <div class="card-icon emoji-icon">🔍</div>
-          <h3>Rastreabilidade</h3>
+          <div class="card-icon emoji-icon">🐳</div>
+          <h3><a class="card-link" href="docker.html">Docker</a></h3>
           <p>
-            Cada execução da pipeline fica registada, facilitando controlo e auditoria.
+            Explica o Dockerfile, o papel do Nginx, o conceito de imagem,
+            container, build e execução local.
           </p>
         </article>
 
         <article class="card">
-          <div class="card-icon emoji-icon">🚀</div>
-          <h3>Eficiência</h3>
+          <div class="card-icon emoji-icon">🗂️</div>
+          <h3><a class="card-link" href="estrutura.html">Estrutura</a></h3>
           <p>
-            O processo fica mais rápido e organizado graças à automação de tarefas.
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card-icon emoji-icon">🛡️</div>
-          <h3>Qualidade</h3>
-          <p>
-            A validação automática impede que certas alterações avancem sem controlo.
+            Mostra como o repositório está organizado e como cada pasta e ficheiro
+            contribui para o funcionamento do projeto.
           </p>
         </article>
       </div>
