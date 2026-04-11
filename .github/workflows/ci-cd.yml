@@ -1,0 +1,59 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  validate-commit:
+    name: Validate Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Conventional Commits format
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          echo "Commit message: $COMMIT_MSG"
+          if ! echo "$COMMIT_MSG" | grep -qE '^(feat|fix|docs|style|refactor|test|ci|chore)(\(.+\))?: .+'; then
+            echo "ERROR: Commit message does not follow Conventional Commits format."
+            echo "Expected: <type>[optional scope]: <description>"
+            echo "Valid types: feat, fix, docs, style, refactor, test, ci, chore"
+            echo "Example: feat: add hello world page"
+            exit 1
+          fi
+          echo "Commit message is valid."
+
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    needs: validate-commit
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=sha
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
