@@ -142,3 +142,11 @@ README.md
 - [Docker](https://www.docker.com/) + [Nginx Alpine](https://hub.docker.com/_/nginx) — containerização e servidor web
 - [GitHub Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) — publicação de imagens
 - [Conventional Commits](https://www.conventionalcommits.org/) — convenção de mensagens de commit
+
+## Conclusão
+
+Este projeto demonstra a implementação de uma pipeline CI/CD real,
+integrando validação automática, containerização e publicação de imagens.
+
+A utilização de Docker e GitHub Actions permite garantir consistência,
+automatização e facilidade de distribuição da aplicação.
