@@ -6,7 +6,7 @@ Projeto académico de avaliação que demonstra a implementação de uma pipelin
 
 ---
 
-## Sobre o Projeto
+## Sobre o Projeto (Teste)
 
 O site estático cobre os seguintes tópicos:
 
