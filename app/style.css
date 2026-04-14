@@ -136,6 +136,14 @@ body {
   margin: 0 auto;
   text-align: center;
 }
+.mini-highlight {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  font-weight: 600;
+}
 
 .hero-content {
   margin-top: 72px;

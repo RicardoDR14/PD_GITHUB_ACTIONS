@@ -8,22 +8,22 @@
 </head>
 <body>
   <header class="hero">
-<nav class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">⌂</span>
-    <span>CI/CD Project</span>
-  </a>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⌂</span>
+        <span>CI/CD Project</span>
+      </a>
 
-  <ul class="nav-links">
-    <li><a href="workflow.html">Workflow</a></li>
-    <li><a href="docker.html">Docker</a></li>
-    <li><a href="estrutura.html">Estrutura</a></li>
-  </ul>
+      <ul class="nav-links">
+        <li><a href="workflow.html">Workflow</a></li>
+        <li><a href="docker.html">Docker</a></li>
+        <li><a href="estrutura.html">Estrutura</a></li>
+      </ul>
 
-  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
-    <span id="themeIcon">☀</span>
-  </button>
-</nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+        <span id="themeIcon">☀</span>
+      </button>
+    </nav>
 
     <div class="hero-content">
       <p class="hero-badge">Projeto Académico • Docker • GitHub Actions • CI/CD</p>
@@ -200,10 +200,94 @@
         </article>
       </div>
     </section>
+
+    <section class="section">
+      <h2>Objetivos do Projeto</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">🎯</div>
+          <h3>Demonstrar CI/CD</h3>
+          <p>
+            Mostrar de forma prática como uma pipeline CI/CD pode validar, construir
+            e publicar uma aplicação automaticamente.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">📚</div>
+          <h3>Consolidar Conceitos</h3>
+          <p>
+            Aplicar conceitos como workflow, jobs, steps, containers, imagens Docker
+            e publicação em registry.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🛠️</div>
+          <h3>Usar Ferramentas Reais</h3>
+          <p>
+            Trabalhar com tecnologias utilizadas no mundo profissional, como Docker,
+            GitHub Actions, Nginx e GHCR.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Porque escolhemos estas tecnologias</h2>
+      <div class="stack-grid">
+        <div class="info-box">
+          <h3>Docker</h3>
+          <p>
+            Foi escolhido para empacotar a aplicação e garantir portabilidade,
+            consistência e facilidade de execução em diferentes ambientes.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>GitHub Actions</h3>
+          <p>
+            Permite automatizar a pipeline diretamente no repositório, integrando-se
+            de forma natural com o GitHub e facilitando a execução dos workflows.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>GHCR</h3>
+          <p>
+            Foi utilizado para armazenar e versionar as imagens Docker geradas,
+            permitindo distribuição simples e rastreável.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Nginx</h3>
+          <p>
+            É uma solução leve e eficiente para servir aplicações estáticas, sendo
+            adequada ao tipo de aplicação desenvolvida neste projeto.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlight">
+      <h2>Resultado Esperado</h2>
+      <p>
+        No final do processo, o projeto demonstra que uma aplicação web simples pode
+        ser integrada numa pipeline completa, desde o commit até à publicação da imagem
+        Docker no GitHub Container Registry.
+      </p>
+      <p>
+        Desta forma, o trabalho não serve apenas como aplicação estática, mas também
+        como demonstração prática de automação, controlo de qualidade e distribuição
+        de software com ferramentas modernas.
+      </p>
+    </section>
   </main>
 
   <footer class="footer">
     <p>Projeto académico sobre Docker, GitHub Actions, automação e CI/CD.</p>
+    <p>Ricardo Rodrigues — 2022147797 &nbsp;|&nbsp; Ruben Ferreiro — 2017008809</p>
   </footer>
 
   <script src="script.js"></script>

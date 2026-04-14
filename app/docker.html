@@ -8,27 +8,30 @@
 </head>
 <body>
   <header class="sub-hero">
-<nav class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">⌂</span>
-    <span>CI/CD Project</span>
-  </a>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⌂</span>
+        <span>CI/CD Project</span>
+      </a>
 
-  <ul class="nav-links">
-    <li><a href="workflow.html">Workflow</a></li>
-    <li><a href="docker.html">Docker</a></li>
-    <li><a href="estrutura.html">Estrutura</a></li>
-  </ul>
+      <ul class="nav-links">
+        <li><a href="workflow.html">Workflow</a></li>
+        <li><a href="docker.html">Docker</a></li>
+        <li><a href="estrutura.html">Estrutura</a></li>
+      </ul>
 
-  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
-    <span id="themeIcon">☀</span>
-  </button>
-</nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+        <span id="themeIcon">☀</span>
+      </button>
+    </nav>
 
     <div class="sub-hero-content">
       <h1>Docker e Containerização</h1>
       <p>
         Explicação do papel do Docker, do Dockerfile e da utilização do Nginx neste projeto.
+      </p>
+      <p class="mini-highlight">
+        Neste projeto, Docker transforma a aplicação web num artefacto executável e portável.
       </p>
     </div>
   </header>
@@ -45,6 +48,43 @@
         Neste projeto, Docker é usado para empacotar a aplicação web estática e permitir
         que ela seja distribuída de forma simples, consistente e reprodutível.
       </p>
+    </section>
+
+    <section class="section">
+      <h2>Porque usar Docker neste Projeto</h2>
+      <div class="stack-grid">
+        <div class="info-box">
+          <h3>Portabilidade</h3>
+          <p>
+            A aplicação fica empacotada numa imagem que pode ser executada em qualquer
+            ambiente com Docker instalado.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Consistência</h3>
+          <p>
+            Garante que a aplicação funciona da mesma forma localmente, no runner
+            do GitHub Actions e em qualquer outro sistema.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Integração com a Pipeline</h3>
+          <p>
+            A imagem Docker é o artefacto final produzido pela pipeline e publicado
+            no GitHub Container Registry.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Facilidade de Distribuição</h3>
+          <p>
+            Em vez de distribuir apenas ficheiros soltos, o projeto passa a ter uma
+            versão empacotada, reutilizável e versionada.
+          </p>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -116,6 +156,29 @@ COPY app/ /usr/share/nginx/html/</code></pre>
     </section>
 
     <section class="section">
+      <h2>O que acontece no Build e no Run</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">🏗️</div>
+          <h3>docker build</h3>
+          <p>
+            O comando de build lê o Dockerfile, obtém a imagem base do Nginx,
+            copia os ficheiros da pasta app e cria uma nova imagem Docker do projeto.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">▶️</div>
+          <h3>docker run</h3>
+          <p>
+            O comando run cria e inicia um container a partir da imagem construída,
+            permitindo executar a aplicação localmente através de uma porta do sistema.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Porque esta abordagem foi usada?</h2>
       <p>
         Como a aplicação é estática, não existe necessidade de um servidor complexo
@@ -144,10 +207,40 @@ docker run -p 8080:80 hello-world</code></pre>
         <strong>http://localhost:8080</strong>.
       </p>
     </section>
+
+    <section class="section">
+      <h2>Vantagens Práticas</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">🔁</div>
+          <h3>Reprodutibilidade</h3>
+          <p>
+            O mesmo artefacto pode ser usado várias vezes sem alterar o comportamento da aplicação.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🚀</div>
+          <h3>Distribuição</h3>
+          <p>
+            A imagem pode ser enviada para um registry e usada por qualquer sistema com Docker.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🧩</div>
+          <h3>Simplicidade</h3>
+          <p>
+            A aplicação fica pronta a ser executada sem necessidade de instalar manualmente um servidor web.
+          </p>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <p>Explicação do Docker e da containerização do projeto.</p>
+    <p>Ricardo Rodrigues — 2022147797 &nbsp;|&nbsp; Ruben Ferreiro — 2017008809</p>
   </footer>
 
   <script src="script.js"></script>

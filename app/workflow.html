@@ -9,10 +9,12 @@
 <body>
   <header class="sub-hero">
     <nav class="navbar">
-      <div class="logo">CI/CD Project</div>
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⌂</span>
+        <span>CI/CD Project</span>
+      </a>
 
       <ul class="nav-links">
-        <li><a href="index.html">Início</a></li>
         <li><a href="workflow.html">Workflow</a></li>
         <li><a href="docker.html">Docker</a></li>
         <li><a href="estrutura.html">Estrutura</a></li>
@@ -28,10 +30,14 @@
       <p>
         Explicação do ficheiro YAML, da pipeline CI/CD e do papel de cada job e step.
       </p>
+      <p class="mini-highlight">
+        Neste projeto, a pipeline garante que apenas commits válidos originam novas imagens Docker publicadas.
+      </p>
     </div>
   </header>
 
   <main>
+
     <section class="section">
       <h2>O que é o Workflow</h2>
       <p>
@@ -75,6 +81,55 @@
     </section>
 
     <section class="section">
+      <h2>CI e CD neste Projeto</h2>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">🔍</div>
+          <h3>Continuous Integration</h3>
+          <p>
+            A fase de CI está representada pela validação automática da mensagem de commit.
+            Sempre que existe um push, o workflow verifica se o commit segue a convenção
+            Conventional Commits antes de permitir qualquer build.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🚚</div>
+          <h3>Continuous Delivery</h3>
+          <p>
+            A fase de CD está representada pela construção da imagem Docker e pela sua
+            publicação automática no GitHub Container Registry, ficando pronta para ser utilizada.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Porque usar GitHub Actions</h2>
+      <p>
+        O GitHub Actions foi escolhido porque permite automatizar tarefas diretamente dentro
+        do repositório, sem necessidade de ferramentas externas.
+      </p>
+      <p>
+        Permite definir triggers, jobs, steps e dependências, tornando a pipeline mais organizada,
+        previsível e fácil de manter.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>O que acontece se a validação falhar?</h2>
+      <p>
+        Se a mensagem do commit não respeitar o padrão definido, o job
+        <strong>validate-commit</strong> termina com erro através de <strong>exit 1</strong>.
+      </p>
+      <p>
+        Como o job seguinte depende dele através de <strong>needs</strong>, o build e a
+        publicação da imagem não chegam a acontecer.
+      </p>
+    </section>
+
+    <section class="section">
       <h2>Ficheiro YAML Utilizado</h2>
       <div class="code-block">
 <pre><code>name: CI/CD Pipeline
@@ -86,136 +141,41 @@ on:
 
 jobs:
   validate-commit:
-    name: Validate Commit Message
     runs-on: ubuntu-latest
     steps:
       - name: Check Conventional Commits format
         run: |
           COMMIT_MSG="${{ github.event.head_commit.message }}"
-          echo "Commit message: $COMMIT_MSG"
           if ! echo "$COMMIT_MSG" | grep -qE '^(feat|fix|docs|style|refactor|test|ci|chore)(\(.+\))?: .+'; then
-            echo "ERROR: Commit message does not follow Conventional Commits format."
-            echo "Expected: &lt;type&gt;[optional scope]: &lt;description&gt;"
-            echo "Valid types: feat, fix, docs, style, refactor, test, ci, chore"
-            echo "Example: feat: add hello world page"
             exit 1
           fi
-          echo "Commit message is valid."
 
   build-and-push:
-    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     needs: validate-commit
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract Docker metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}
-          tags: |
-            type=sha
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}</code></pre>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Explicação Step by Step</h2>
-      <div class="stack-grid">
-        <div class="info-box">
-          <h3>1. Trigger</h3>
-          <p>
-            O workflow começa com o evento <strong>push</strong>. Isso significa que
-            qualquer alteração enviada para o repositório ativa automaticamente a pipeline.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>2. Validate Commit</h3>
-          <p>
-            O primeiro job verifica se a mensagem do commit segue o padrão
-            <strong>Conventional Commits</strong>. Se falhar, o workflow termina.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>3. needs</h3>
-          <p>
-            O segundo job usa <strong>needs: validate-commit</strong> para garantir
-            que só corre se a validação do commit passar com sucesso.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>4. Checkout</h3>
-          <p>
-            O step <strong>actions/checkout</strong> descarrega o conteúdo do
-            repositório para o runner.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>5. Login no GHCR</h3>
-          <p>
-            O workflow autentica-se no GitHub Container Registry com o
-            <strong>GITHUB_TOKEN</strong>, permitindo publicar a imagem.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>6. Metadata</h3>
-          <p>
-            A action de metadata gera automaticamente as tags da imagem, incluindo
-            a tag baseada no SHA e a tag <strong>latest</strong> na branch main.
-          </p>
-        </div>
-
-        <div class="info-box">
-          <h3>7. Build and Push</h3>
-          <p>
-            No final, a imagem Docker é construída com base no projeto e publicada
-            automaticamente no GHCR.
-          </p>
-        </div>
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+      - uses: docker/metadata-action@v5
+      - uses: docker/build-push-action@v5</code></pre>
       </div>
     </section>
 
     <section class="section highlight">
       <h2>Porque esta estrutura faz sentido?</h2>
       <p>
-        Esta organização permite separar responsabilidades dentro da pipeline.
-        Primeiro, garante-se a qualidade e consistência do histórico de commits.
-        Depois, apenas alterações válidas seguem para a etapa de build e publicação.
+        Primeiro valida-se o commit (qualidade), depois constrói-se e publica-se (execução).
       </p>
       <p>
-        Além disso, o uso de permissões explícitas e da diretiva <strong>needs</strong>
-        torna o workflow mais seguro, previsível e fácil de defender em contexto académico.
+        Isto garante controlo, eficiência e automatização do processo.
       </p>
     </section>
+
   </main>
 
   <footer class="footer">
     <p>Explicação do workflow GitHub Actions do projeto.</p>
+    <p>Ricardo Rodrigues — 2022147797 | Ruben Ferreiro — 2017008809</p>
   </footer>
 
   <script src="script.js"></script>

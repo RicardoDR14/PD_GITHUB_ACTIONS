@@ -8,27 +8,30 @@
 </head>
 <body>
   <header class="sub-hero">
-<nav class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">⌂</span>
-    <span>CI/CD Project</span>
-  </a>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⌂</span>
+        <span>CI/CD Project</span>
+      </a>
 
-  <ul class="nav-links">
-    <li><a href="workflow.html">Workflow</a></li>
-    <li><a href="docker.html">Docker</a></li>
-    <li><a href="estrutura.html">Estrutura</a></li>
-  </ul>
+      <ul class="nav-links">
+        <li><a href="workflow.html">Workflow</a></li>
+        <li><a href="docker.html">Docker</a></li>
+        <li><a href="estrutura.html">Estrutura</a></li>
+      </ul>
 
-  <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
-    <span id="themeIcon">☀</span>
-  </button>
-</nav>
+      <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema">
+        <span id="themeIcon">☀</span>
+      </button>
+    </nav>
 
     <div class="sub-hero-content">
       <h1>Estrutura do Projeto</h1>
       <p>
         Organização do repositório e função de cada pasta e ficheiro principal.
+      </p>
+      <p class="mini-highlight">
+        A estrutura do projeto foi organizada para separar aplicação, automação, containerização e documentação.
       </p>
     </div>
   </header>
@@ -59,6 +62,43 @@ app/
 
 Dockerfile
 README.md</code></pre>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Porque esta estrutura foi adotada</h2>
+      <div class="stack-grid">
+        <div class="info-box">
+          <h3>Separação de Responsabilidades</h3>
+          <p>
+            A aplicação web está separada da automação e da configuração do container,
+            o que torna o projeto mais claro e mais fácil de manter.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Facilidade de Build</h3>
+          <p>
+            O Dockerfile está na raiz do projeto, permitindo que o build use toda a
+            estrutura como contexto, incluindo a pasta <strong>app/</strong>.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Compatibilidade com GitHub Actions</h3>
+          <p>
+            O ficheiro do workflow está localizado em <strong>.github/workflows/</strong>,
+            que é o local padrão reconhecido pelo GitHub Actions.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h3>Documentação Centralizada</h3>
+          <p>
+            O README.md reúne a explicação geral do projeto, instruções de uso e
+            informação sobre a pipeline.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -100,6 +140,47 @@ README.md</code></pre>
     </section>
 
     <section class="section">
+      <h2>Como os Ficheiros Participam no Processo</h2>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon emoji-icon">🌍</div>
+          <h3>app/</h3>
+          <p>
+            É a interface visível do projeto. Tudo o que está nesta pasta será servido
+            ao utilizador final através do Nginx.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🏗️</div>
+          <h3>Dockerfile</h3>
+          <p>
+            Usa a imagem base do Nginx e copia a pasta <strong>app/</strong> para dentro
+            do container, criando a imagem Docker final.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">🔁</div>
+          <h3>ci-cd.yml</h3>
+          <p>
+            Automatiza a validação dos commits, o build da imagem e a sua publicação
+            no GitHub Container Registry.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon emoji-icon">📦</div>
+          <h3>GHCR</h3>
+          <p>
+            Recebe a imagem construída pela pipeline e guarda as versões publicadas
+            do projeto.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
       <h2>Como os Componentes se Ligam</h2>
       <div class="stack-grid">
         <div class="info-box">
@@ -135,17 +216,22 @@ README.md</code></pre>
     </section>
 
     <section class="section highlight">
-      <h2>Vantagem desta organização</h2>
+      <h2>Benefícios desta Organização</h2>
       <p>
-        Esta estrutura torna o projeto claro, modular e fácil de apresentar.
-        A aplicação fica separada da automação e da documentação, o que melhora
-        manutenção, leitura e escalabilidade.
+        Esta estrutura torna o projeto claro, modular e fácil de apresentar. A aplicação
+        fica separada da automação e da documentação, o que melhora manutenção, leitura
+        e escalabilidade.
+      </p>
+      <p>
+        Além disso, permite que qualquer pessoa perceba rapidamente onde está o frontend,
+        onde está o Dockerfile, onde está o workflow e como todo o processo CI/CD funciona.
       </p>
     </section>
   </main>
 
   <footer class="footer">
     <p>Explicação da estrutura do repositório e da ligação entre componentes.</p>
+    <p>Ricardo Rodrigues — 2022147797 &nbsp;|&nbsp; Ruben Ferreiro — 2017008809</p>
   </footer>
 
   <script src="script.js"></script>
