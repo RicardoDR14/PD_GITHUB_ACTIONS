@@ -32,7 +32,7 @@ A pipeline executa em qualquer push para qualquer branch (`branches: ["**"]`) e 
 ### Fluxo
 
 ```
-Push → Validação do commit → Build da imagem Docker → Publicação no GHCR
+Push → Validação do commit → Build da imagem Docker → Publicação no GHCR 
 ```
 
 ---
